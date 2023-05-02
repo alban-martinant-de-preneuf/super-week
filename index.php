@@ -3,6 +3,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Controller\UserController;
+use App\Controller\AuthController;
 
 $router = new AltoRouter();
 
@@ -25,13 +26,27 @@ $router->map('GET', '/register', function () {
     require_once("src/View/register.php");
 }, 'user_register');
 
+$router->map('POST', '/register', function () {
+    if (
+        isset($_POST['email']) &&
+        isset($_POST['firstname']) &&
+        isset($_POST['lastname'])
+    ) {
+        $email = htmlspecialchars($_POST['email']);
+        $firstname = htmlspecialchars($_POST['firstname']);
+        $lastname = htmlspecialchars($_POST['lastname']);
+    }
+    $authController = new AuthController();
+    $authController->register($email, $firstname, $lastname);
+}, 'user_register_post');
+
 // match current request url
 $match = $router->match();
 
 // call closure or throw 404 status
-if( is_array($match) && is_callable( $match['target'] ) ) {
-	call_user_func_array( $match['target'], $match['params'] ); 
+if (is_array($match) && is_callable($match['target'])) {
+    call_user_func_array($match['target'], $match['params']);
 } else {
-	// no route was matched
-	header( $_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+    // no route was matched
+    header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
 }
