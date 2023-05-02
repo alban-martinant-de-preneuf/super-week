@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use App\Controller\UserController;
+
 $router = new AltoRouter();
 
 $router->setBasePath('/super-week');
@@ -11,7 +13,8 @@ $router->map('GET', '/', function () {
 }, 'home');
 
 $router->map('GET', '/users', function () {
-    echo "Bienvenu aux utilisateurs";
+    $userController = new UserController();
+    echo $userController->findAll();
 }, 'users_list');
 
 $router->map('GET', '/users/[i:id]', function ($id) {
