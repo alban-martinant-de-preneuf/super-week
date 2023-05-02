@@ -19,7 +19,11 @@ $router->map('GET', '/users', function () {
 
 $router->map('GET', '/users/[i:id]', function ($id) {
     echo ("Bienvenu sur la page de l’utilisateur " . $id);
-}, 'user/id');
+}, 'user_id');
+
+$router->map('GET', '/register', function () {
+    require_once("src/View/register.php");
+}, 'user_register');
 
 // match current request url
 $match = $router->match();
