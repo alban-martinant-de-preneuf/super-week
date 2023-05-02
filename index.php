@@ -7,8 +7,16 @@ $router = new AltoRouter();
 $router->setBasePath('/super-week');
 
 $router->map('GET', '/', function () {
-    echo "OK";
+    echo "Bienvenu sur l'accueil";
 }, 'home');
+
+$router->map('GET', '/users', function () {
+    echo "Bienvenu aux utilisateurs";
+}, 'users_list');
+
+$router->map('GET', '/users/[i:id]', function ($id) {
+    echo ("Bienvenu sur la page de l’utilisateur " . $id);
+}, 'user/id');
 
 // match current request url
 $match = $router->match();
