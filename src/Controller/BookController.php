@@ -16,4 +16,16 @@ class BookController {
         $bookModel->insertBook($title, $content, $userId);
     }
 
+    public function getBooks()
+    {
+        $bookModel = new BookModel();
+        echo json_encode($bookModel->getBooks());
+    }
+
+    public function getBookInfos($id)
+    {
+        $bookModel = new BookModel();
+        echo json_encode($bookModel->getBookInfos($id));
+    }
+
 }
