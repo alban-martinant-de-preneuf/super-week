@@ -77,6 +77,11 @@ $router->map('POST', '/books/write', function () {
     }
 }, 'book_post');
 
+$router->map('GET', '/books', function () {
+    $bookController = new BookController();
+    $bookController->getBooks();
+}, 'get_books');
+
 // match current request url
 $match = $router->match();
 

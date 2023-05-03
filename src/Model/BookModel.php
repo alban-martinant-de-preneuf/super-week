@@ -25,4 +25,15 @@ class BookModel
             'userId' => $userId
         ]);
     }
+
+    public function getBooks()
+    {
+        $sqlQuery = ("SELECT id, title, content, id_user
+            FROM book"
+        );
+        $prepare = $this->_db->prepare($sqlQuery);
+        $prepare->execute();
+        $fetchAllAssoc = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+        return $fetchAllAssoc;
+    }
 }
