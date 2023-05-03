@@ -14,8 +14,9 @@ class AuthController
         $lastname = htmlspecialchars($lastname);
         $password = htmlspecialchars($password);
         $passwordConf = htmlspecialchars($passwordConf);
-        
+
         $model = new UserModel();
+        var_dump($model->isUserMailExist($email));
         if (
             !$model->isUserMailExist($email) &&
             $this->isPasswordsMatch($password, $passwordConf)
@@ -32,5 +33,23 @@ class AuthController
     private function isPasswordsMatch($password, $passwordConf)
     {
         return $password === $passwordConf;
+    }
+
+    public function displayLogin()
+    {
+        require_once("src/View/login.php");
+    }
+
+    public function login($email, $password)
+    {
+        $model = new UserModel();
+        if ($id = $model->isUserMailExist($email))
+        {
+            $user = $model->getUserInfos($id);
+            $hashedPassword = $user['password'];
+            if (password_verify($password, $hashedPassword)) {
+                $_SESSION['user'] = $user;
+            }
+        }
     }
 }
