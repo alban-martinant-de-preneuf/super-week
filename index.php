@@ -19,7 +19,8 @@ $router->map('GET', '/users', function () {
 }, 'users_list');
 
 $router->map('GET', '/users/[i:id]', function ($id) {
-    echo ("Bienvenu sur la page de l’utilisateur " . $id);
+    $userController = new UserController();
+    $userController->getUserInfos($id);
 }, 'user_id');
 
 $router->map('GET', '/register', function () {
