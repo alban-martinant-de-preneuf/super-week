@@ -9,11 +9,11 @@ class AuthController
 
     public function register($email, $firstname, $lastname, $password, $passwordConf)
     {
-        $email = htmlspecialchars($email);
-        $firstname = htmlspecialchars($firstname);
-        $lastname = htmlspecialchars($lastname);
-        $password = htmlspecialchars($password);
-        $passwordConf = htmlspecialchars($passwordConf);
+        $email = htmlspecialchars(trim($email));
+        $firstname = htmlspecialchars(trim($firstname));
+        $lastname = htmlspecialchars(trim($lastname));
+        $password = htmlspecialchars(trim($password));
+        $passwordConf = htmlspecialchars(trim($passwordConf));
 
         $model = new UserModel();
         var_dump($model->isUserMailExist($email));

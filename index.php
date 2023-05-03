@@ -87,6 +87,11 @@ $router->map('GET', '/books/[i:id]', function ($id) {
     $bookController->getBookInfos($id);
 }, 'get_book_infos');
 
+$router->map('GET', '/logout', function () {
+    session_destroy();
+    header('Location: /super-week');
+}, 'logout');
+
 // match current request url
 $match = $router->match();
 
