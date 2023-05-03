@@ -15,8 +15,7 @@ class UserModel
 
     public function findAll()
     {
-        $sqlQuery =  (
-            "SELECT `id`, `email`, `first_name`, `last_name`
+        $sqlQuery =  ("SELECT `id`, `email`, `first_name`, `last_name`
             FROM `user`"
         );
         $prepare = $this->_db->prepare($sqlQuery);
@@ -27,21 +26,19 @@ class UserModel
 
     public function isUserMailExist($email)
     {
-        $sqlQuery = (
-            "SELECT COUNT(email)
+        $sqlQuery = ("SELECT id
             FROM user
             WHERE email = :email"
         );
         $prepare = $this->_db->prepare($sqlQuery);
         $prepare->execute(['email' => $email]);
         $result = $prepare->fetchColumn();
-        return $result > 0;
+        return $result;
     }
 
     public function register($email, $firstname, $lastname, $password)
     {
-        $sqlQuery = (
-            "INSERT INTO user (email, first_name, last_name, password)
+        $sqlQuery = ("INSERT INTO user (email, first_name, last_name, password)
             VALUES (:email, :firstname, :lastname, :password)"
         );
         $prepare = $this->_db->prepare($sqlQuery);
@@ -55,14 +52,14 @@ class UserModel
 
     public function getUserInfos($id)
     {
-        $sqlQuery =  (
-            "SELECT `id`, `email`, `first_name`, `last_name`, `password`
+        $sqlQuery =  ("SELECT `id`, `email`, `first_name`, `last_name`, `password`
             FROM `user`
             WHERE id = :id"
         );
         $prepare = $this->_db->prepare($sqlQuery);
         $prepare->execute(["id" => $id]);
-        $fetchAllAssoc = $prepare->fetch(\PDO::FETCH_ASSOC);
-        return $fetchAllAssoc;
+        $fetchAssoc = $prepare->fetch(\PDO::FETCH_ASSOC);
+        return $fetchAssoc;
     }
+
 }

@@ -42,6 +42,21 @@ $router->map('POST', '/register', function () {
     }
 }, 'user_register_post');
 
+$router->map('GET', '/login', function () {
+    $authController = new AuthController();
+    $authController->displayLogin();
+}, 'user_login');
+
+$router->map('POST', '/login', function () {
+    if (isset($_POST['submit'])) {
+        $authController = new AuthController();
+        $authController->login(
+            $_POST['email'],
+            $_POST['password']
+        );
+    }
+}, 'user_login_post');
+
 $router->map('GET', '/books/write', function () {
     $bookController = new BookController();
     $bookController->displayAddBook();
