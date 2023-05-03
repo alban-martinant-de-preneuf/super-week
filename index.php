@@ -23,7 +23,8 @@ $router->map('GET', '/users/[i:id]', function ($id) {
 }, 'user_id');
 
 $router->map('GET', '/register', function () {
-    require_once("src/View/register.php");
+    $authController = new AuthController();
+    $authController->displayRegister();
 }, 'user_register');
 
 $router->map('POST', '/register', function () {

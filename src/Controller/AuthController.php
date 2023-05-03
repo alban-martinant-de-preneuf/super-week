@@ -13,4 +13,8 @@ class AuthController {
         }
     }
 
+    public function displayRegister() {
+        require_once("src/View/register.php");
+    }
+
 }
