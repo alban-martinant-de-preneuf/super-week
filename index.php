@@ -82,6 +82,11 @@ $router->map('GET', '/books', function () {
     $bookController->getBooks();
 }, 'get_books');
 
+$router->map('GET', '/books/[i:id]', function ($id) {
+    $bookController = new BookController();
+    $bookController->getBookInfos($id);
+}, 'get_book_infos');
+
 // match current request url
 $match = $router->match();
 

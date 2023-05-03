@@ -36,4 +36,16 @@ class BookModel
         $fetchAllAssoc = $prepare->fetchAll(\PDO::FETCH_ASSOC);
         return $fetchAllAssoc;
     }
+
+    public function getBookInfos($id)
+    {
+        $sqlQuery = ("SELECT id, title, content, id_user
+            FROM book
+            WHERE id = :id"
+        );
+        $prepare = $this->_db->prepare($sqlQuery);
+        $prepare->execute(['id' => $id]);
+        $fetchAssoc = $prepare->fetch(\PDO::FETCH_ASSOC);
+        return $fetchAssoc;
+    }
 }

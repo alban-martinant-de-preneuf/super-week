@@ -22,4 +22,10 @@ class BookController {
         echo json_encode($bookModel->getBooks());
     }
 
+    public function getBookInfos($id)
+    {
+        $bookModel = new BookModel();
+        echo json_encode($bookModel->getBookInfos($id));
+    }
+
 }
