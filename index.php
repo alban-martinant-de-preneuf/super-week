@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+session_start();
+
 use App\Controller\UserController;
 use App\Controller\AuthController;
 use App\Controller\BookController;
@@ -55,12 +57,25 @@ $router->map('POST', '/login', function () {
             $_POST['password']
         );
     }
+    echo "ok";
+    var_dump($_SESSION);
 }, 'user_login_post');
 
 $router->map('GET', '/books/write', function () {
     $bookController = new BookController();
     $bookController->displayAddBook();
 }, 'book_write');
+
+$router->map('POST', '/books/write', function () {
+    if (isset($_POST['submit']) && isset($_SESSION['user'])) {
+        $bookController = new BookController();
+        $bookController->addBook(
+            $_POST['title'],
+            $_POST['content'],
+            $_SESSION['user']['id']
+        );
+    }
+}, 'book_post');
 
 // match current request url
 $match = $router->match();

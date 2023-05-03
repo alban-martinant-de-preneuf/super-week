@@ -13,7 +13,7 @@
 
     <h1>Add book</h1>
 
-    <form action="addBook" method="POST">
+    <form action="write" method="POST">
         <label for="title">Title</label>
         <input type="text" name="title" id="title">
         <label for="content">Content</label>
