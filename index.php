@@ -4,6 +4,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Controller\UserController;
 use App\Controller\AuthController;
+use App\Controller\BookController;
 
 $router = new AltoRouter();
 
@@ -40,6 +41,11 @@ $router->map('POST', '/register', function () {
         );
     }
 }, 'user_register_post');
+
+$router->map('GET', '/books/write', function () {
+    $bookController = new BookController();
+    $bookController->displayAddBook();
+}, 'book_write');
 
 // match current request url
 $match = $router->match();
