@@ -38,17 +38,31 @@ class UserModel
         return $result > 0;
     }
 
-    public function register($email, $firstname, $lastname)
+    public function register($email, $firstname, $lastname, $password)
     {
         $sqlQuery = (
-            "INSERT INTO user (email, first_name, last_name)
-            VALUES (:email, :firstname, :lastname)"
+            "INSERT INTO user (email, first_name, last_name, password)
+            VALUES (:email, :firstname, :lastname, :password)"
         );
         $prepare = $this->_db->prepare($sqlQuery);
         $prepare->execute([
             'email' => $email,
             'firstname' => $firstname,
-            'lastname' => $lastname
+            'lastname' => $lastname,
+            'password' => $password
         ]);
+    }
+
+    public function getUserInfos($id)
+    {
+        $sqlQuery =  (
+            "SELECT `id`, `email`, `first_name`, `last_name`, `password`
+            FROM `user`
+            WHERE id = :id"
+        );
+        $prepare = $this->_db->prepare($sqlQuery);
+        $prepare->execute(["id" => $id]);
+        $fetchAllAssoc = $prepare->fetch(\PDO::FETCH_ASSOC);
+        return $fetchAllAssoc;
     }
 }
