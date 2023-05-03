@@ -28,17 +28,16 @@ $router->map('GET', '/register', function () {
 }, 'user_register');
 
 $router->map('POST', '/register', function () {
-    if (
-        isset($_POST['email']) &&
-        isset($_POST['firstname']) &&
-        isset($_POST['lastname'])
-    ) {
-        $email = htmlspecialchars($_POST['email']);
-        $firstname = htmlspecialchars($_POST['firstname']);
-        $lastname = htmlspecialchars($_POST['lastname']);
+    if (isset($_POST['submit'])) {
+        $authController = new AuthController();
+        $authController->register(
+            $_POST['email'],
+            $_POST['firstname'],
+            $_POST['lastname'],
+            $_POST['password'],
+            $_POST['passwordConf']
+        );
     }
-    $authController = new AuthController();
-    $authController->register($email, $firstname, $lastname);
 }, 'user_register_post');
 
 // match current request url
