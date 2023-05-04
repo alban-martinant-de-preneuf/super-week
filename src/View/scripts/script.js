@@ -19,13 +19,17 @@ usersBtn.addEventListener('click', async () => {
     const request = await fetch('/super-week/users');
     const users = await request.json();
     contentDiv.innerHTML = "";
-    for (user of users) {
-        contentDiv.innerHTML += (
-            `<h3>User : ${user.first_name} ${user.last_name} </h3>
-            id : ${user.id} <br>
-            Email : ${user.email}
-            <hr>`
+    if (users.length > 0) {
+        for (user of users) {
+            contentDiv.innerHTML += (
+                `<h3>User : ${user.first_name} ${user.last_name} </h3>
+                id : ${user.id} <br>
+                Email : ${user.email}
+                <hr>`
             );
+        }
+    } else {
+        contentDiv.innerHTML = `There are no users !`
     }
 })
 
@@ -33,13 +37,17 @@ booksBtn.addEventListener('click', async () => {
     const request = await fetch('/super-week/books');
     const books = await request.json();
     contentDiv.innerHTML = "";
-    for (book of books) {
-        contentDiv.innerHTML += (
-            `<h3>Title : ${book.title}</h3>
-            Id : ${book.id} <br>
-            Owner id ${book.id_user}
-            <hr>`
+    if (books.length > 0) {
+        for (book of books) {
+            contentDiv.innerHTML += (
+                `<h3>Title : ${book.title}</h3>
+                Id : ${book.id} <br>
+                Owner id ${book.id_user}
+                <hr>`
             );
+        }
+    } else {
+        contentDiv.innerHTML = `There are no books !`
     }
 })
 
@@ -47,41 +55,65 @@ userForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const idUser = userInput.value;
     const request = await fetch('/super-week/users/' + idUser);
-    const user = await request.json();
-    contentDiv.innerHTML = (
-        `<h3>User : ${user.first_name} ${user.last_name} </h3>
-        Id : ${user.id} <br>
-        Email : ${user.email}`
-        );
+    if (request.ok) {
+        const user = await request.json();
+        if (user) {
+            contentDiv.innerHTML = (
+                `<h3>User : ${user.first_name} ${user.last_name} </h3>
+                Id : ${user.id} <br>
+                Email : ${user.email}`
+            );
+        } else {
+            contentDiv.innerHTML = `<p>This user doesn't exist !</p>`
+        }
+    } else {
+        contentDiv.innerHTML = `<p>Enter an id !</p>`
+    }
 })
 
 bookForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     const idBook = bookInput.value;
     const request = await fetch('/super-week/books/' + idBook);
-    const book = await request.json();
-    contentDiv.innerHTML = (
-        `<h3>Book : ${book.title}</h3>
-        Id : ${book.id} <br>
-        Owner id : ${book.id_user} <br>
-        <p>Content : ${book.content}</p>`
-        );
+    if (request.ok) {
+        const book = await request.json();
+        if (book) {
+            contentDiv.innerHTML = (
+                `<h3>Book : ${book.title}</h3>
+                Id : ${book.id} <br>
+                Owner id : ${book.id_user} <br>
+                <p>Content : ${book.content}</p>`
+            );
+        } else {
+            contentDiv.innerHTML = `<p>This book doesn't exist !</p>`
+        }
+    } else {
+        contentDiv.innerHTML = `<p>Enter an id !</p>`
+    }
 })
 
-generateUsersBtn.addEventListener('click', () => {
-    fetch('/super-week/faker/users');
+generateUsersBtn.addEventListener('click', async () => {
+    const request = await fetch('/super-week/faker/users');
+    const text = await request.text();
+    contentDiv.innerHTML = `<p>${text}</p>`;
 })
 
-generateBooksBtn.addEventListener('click', () => {
-    fetch('/super-week/faker/books');
+generateBooksBtn.addEventListener('click', async () => {
+    const request = await fetch('/super-week/faker/books');
+    const text = await request.text();
+    contentDiv.innerHTML = `<p>${text}</p>`;
 })
 
-deleteUsersBtn.addEventListener('click', () => {
-    fetch('/super-week/users/delete');
+deleteUsersBtn.addEventListener('click', async () => {
+    const request = await fetch('/super-week/users/delete');
+    const text = await request.text();
+    contentDiv.innerHTML = `<p>${text}</p>`;
 })
 
-deleteBooksBtn.addEventListener('click', () => {
-    fetch('/super-week/books/delete');
+deleteBooksBtn.addEventListener('click', async () => {
+    const request = await fetch('/super-week/books/delete');
+    const text = await request.text();
+    contentDiv.innerHTML = `<p>${text}</p>`;
 })
 
 signUpBtn?.addEventListener('click', () => {

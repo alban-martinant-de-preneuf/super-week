@@ -31,10 +31,12 @@ class UserController {
             $password = password_hash("pass", PASSWORD_DEFAULT);
             $userModel->register($email, $firstname, $lastname, $password);
         }
+        echo "Users have been created";
     }
 
     public function delUsers() {
         $userModel = new UserModel();
         $userModel->delUsers();
+        echo "Users have been deleted";
     }
 }
