@@ -31,7 +31,8 @@ booksBtn.addEventListener('click', async () => {
     for (book of books) {
         contentDiv.innerHTML += (
             `<h3>Titre : ${book.title}</h3>
-            id : ${book.id}
+            Id : ${book.id} <br>
+            Owner id ${book.id_user}
             <hr>`
             );
     }
@@ -44,7 +45,7 @@ userForm.addEventListener('submit', async (e) => {
     const user = await request.json();
     contentDiv.innerHTML = (
         `<h3>User : ${user.first_name} ${user.last_name} </h3>
-        Id : ${user.id}
+        Id : ${user.id} <br>
         Email : ${user.email}`
         );
 })
@@ -56,7 +57,8 @@ bookForm.addEventListener('submit', async (e) => {
     const book = await request.json();
     contentDiv.innerHTML = (
         `<h3>Book : ${book.title}</h3>
-        Id : ${book.id}
+        Id : ${book.id} <br>
+        Owner id : ${book.id_user} <br>
         <p>Content : ${book.content}</p>`
         );
 })
