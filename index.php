@@ -35,10 +35,10 @@ $router->map('GET', '/users/delete', function () {
     $userController->delUsers();
 }, 'delete_users');
 
-// $router->map('GET', '/books/delete', function () {
-//     $bookController = new BookController();
-//     $bookController->delBooks();
-// }, 'delete_books');
+$router->map('GET', '/books/delete', function () {
+    $bookController = new BookController();
+    $bookController->delBooks();
+}, 'delete_books');
 
 $router->map('GET', '/users', function () {
     $userController = new UserController();

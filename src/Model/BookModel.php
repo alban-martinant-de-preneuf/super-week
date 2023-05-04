@@ -48,4 +48,11 @@ class BookModel
         $fetchAssoc = $prepare->fetch(\PDO::FETCH_ASSOC);
         return $fetchAssoc;
     }
+
+    public function delBooks()
+    {
+        $sqlQuery = "TRUNCATE `super_week`.`book`";
+        $prepare = $this->_db->prepare($sqlQuery);
+        $prepare->execute();
+    }
 }

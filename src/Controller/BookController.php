@@ -44,4 +44,9 @@ class BookController
             $bookModel->insertBook($titre, $content, $userId);
         }
     }
+
+    public function delBooks() {
+        $bookModel = new BookModel();
+        $bookModel->delBooks();
+    }
 }
