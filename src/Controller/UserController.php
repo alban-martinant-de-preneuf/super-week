@@ -16,4 +16,9 @@ class UserController {
         echo json_encode($model->getUserInfos($id));
     }
 
+    public function getIds() {
+        $model = new UserModel();
+        return $model->getIds();
+    }
+
 }
