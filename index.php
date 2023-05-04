@@ -20,7 +20,7 @@ $router->map('GET', '/', function () {
 
 $router->map('GET', '/users', function () {
     $userController = new UserController();
-    echo $userController->findAll();
+    $userController->findAll();
 }, 'users_list');
 
 $router->map('GET', '/users/[i:id]', function ($id) {
@@ -59,8 +59,6 @@ $router->map('POST', '/login', function () {
             $_POST['password']
         );
     }
-    echo "ok";
-    var_dump($_SESSION);
 }, 'user_login_post');
 
 $router->map('GET', '/books/write', function () {

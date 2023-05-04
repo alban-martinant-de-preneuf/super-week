@@ -16,7 +16,6 @@ class AuthController
         $passwordConf = htmlspecialchars(trim($passwordConf));
 
         $model = new UserModel();
-        var_dump($model->isUserMailExist($email));
         if (
             !$model->isUserMailExist($email) &&
             $this->isPasswordsMatch($password, $passwordConf)

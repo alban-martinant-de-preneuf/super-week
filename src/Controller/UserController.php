@@ -8,7 +8,7 @@ class UserController {
 
     public function findAll() {
         $model = new UserModel();
-        return $model->findAll();
+        echo $model->findAll();
     }
 
     public function getUserInfos($id) {

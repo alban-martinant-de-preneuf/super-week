@@ -11,7 +11,6 @@ usersBtn.addEventListener('click', async () => {
     const users = await request.json();
     contentDiv.innerHTML = "";
     for (user of users) {
-        console.log(user);
         contentDiv.innerHTML += (
             `<div class="user">
                 <h3>User : ${user.first_name} ${user.last_name} </h3>
@@ -26,7 +25,6 @@ booksBtn.addEventListener('click', async () => {
     const books = await request.json();
     contentDiv.innerHTML = "";
     for (book of books) {
-        console.log(book);
         contentDiv.innerHTML += (
             `<div class="book">
                 <h3>Titre : ${book.title}</h3>
@@ -40,7 +38,6 @@ userForm.addEventListener('submit', async (e) => {
     const idUser = userInput.value;
     const request = await fetch('/super-week/users/' + idUser);
     const user = await request.json();
-    console.log(user);
     contentDiv.innerHTML = (
         `<h3>User : ${user.first_name} ${user.last_name} </h3>
         Id : ${user.id}
@@ -53,7 +50,6 @@ bookForm.addEventListener('submit', async (e) => {
     const idBook = bookInput.value;
     const request = await fetch('/super-week/books/' + idBook);
     const book = await request.json();
-    console.log(book);
     contentDiv.innerHTML = (
         `<h3>Book : ${book.title}</h3>
         Id : ${book.id}
