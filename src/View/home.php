@@ -11,8 +11,19 @@
 </head>
 
 <body>
+    <header>
+        <h1>Welcome <?= isset($_SESSION['user']) ? $_SESSION['user']['first_name'] : null ?></h1>
+        <?php if (!isset($_SESSION['user'])) : ?>
+            <button id="sign_in">Sign in</button>
+            <button id="sign_up">Sign up</button>
+        <?php else : ?>
+            <button id="disconnect">Disconnect</button>
+            <button id="add_book">Add book</button>
+        <?php endif ?>
+    </header>
+
     <div id="buttons_div">
-        <h1>Informations</h1>
+        <h2>Informations</h2>
         <input type="button" value="Users" id="users">
         <input type="button" value="Books" id="books">
         <form action="" id="get_user_form">

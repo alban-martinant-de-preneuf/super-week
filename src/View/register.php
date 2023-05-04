@@ -22,7 +22,7 @@
         <input type="text" name="firstname" id="firstname">
         <label for="lastname">Lastname</label>
         <input type="text" name="lastname" id="lastname">
-        <input type="submit" name="submit">
+        <input type="submit" name="submit" value="Submit">
     </form>
 
 </body>

@@ -21,6 +21,7 @@ class AuthController
             $this->isPasswordsMatch($password, $passwordConf)
         ) {
             $model->register($email, $firstname, $lastname, password_hash($password, PASSWORD_DEFAULT));
+            header('Location: /super-week/login');
         }
     }
 
@@ -42,13 +43,16 @@ class AuthController
     public function login($email, $password)
     {
         $model = new UserModel();
-        if ($id = $model->isUserMailExist($email))
-        {
+        if ($id = $model->isUserMailExist($email)) {
             $user = $model->getUserInfos($id);
             $hashedPassword = $user['password'];
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['user'] = $user;
+                header('Location: /super-week');
+                die();
             }
         }
+        header('Location: /super-week/login');
+        die();
     }
 }

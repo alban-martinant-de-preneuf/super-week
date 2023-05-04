@@ -12,11 +12,16 @@ class BookController
     {
         require_once('src/View/addbook.php');
     }
-
+    
     public function addBook($title, $content, $userId)
     {
         $bookModel = new BookModel();
-        $bookModel->insertBook($title, $content, $userId);
+        $bookModel->insertBook(
+            htmlspecialchars($title),
+            htmlspecialchars($content),
+            htmlspecialchars($userId)
+        );
+        header('Location: /super-week');
     }
 
     public function getBooks()

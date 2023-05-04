@@ -18,7 +18,7 @@
         <input type="text" name="title" id="title">
         <label for="content">Content</label>
         <textarea name="content" id="content" cols="30" rows="10"></textarea>
-        <input type="submit" name="submit">
+        <input type="submit" name="submit" value="Add book">
     </form>
 
 </body>

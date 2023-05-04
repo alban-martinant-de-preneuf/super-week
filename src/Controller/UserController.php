@@ -25,9 +25,9 @@ class UserController {
         $userModel = new UserModel();
 
         for ($i = 0; $i < 10; $i++) {
-            $email = $faker->email();
             $firstname = $faker->firstName();
             $lastname = $faker->lastName();
+            $email = strtolower(iconv('UTF-8', 'ASCII//TRANSLIT',$firstname . "-" . $lastname."@".$faker->freeEmailDomain()));
             $password = password_hash("pass", PASSWORD_DEFAULT);
             $userModel->register($email, $firstname, $lastname, $password);
         }

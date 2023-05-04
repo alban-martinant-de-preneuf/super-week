@@ -10,6 +10,11 @@ const generateBooksBtn = document.getElementById('generate_books');
 const deleteUsersBtn = document.getElementById('delete_users');
 const deleteBooksBtn = document.getElementById('delete_books');
 
+const signInBtn = document.getElementById('sign_in');
+const signUpBtn = document.getElementById('sign_up');
+const disconnectBtn = document.getElementById('disconnect');
+const addBookBtn = document.getElementById('add_book');
+
 usersBtn.addEventListener('click', async () => {
     const request = await fetch('/super-week/users');
     const users = await request.json();
@@ -30,7 +35,7 @@ booksBtn.addEventListener('click', async () => {
     contentDiv.innerHTML = "";
     for (book of books) {
         contentDiv.innerHTML += (
-            `<h3>Titre : ${book.title}</h3>
+            `<h3>Title : ${book.title}</h3>
             Id : ${book.id} <br>
             Owner id ${book.id_user}
             <hr>`
@@ -77,4 +82,20 @@ deleteUsersBtn.addEventListener('click', () => {
 
 deleteBooksBtn.addEventListener('click', () => {
     fetch('/super-week/books/delete');
+})
+
+signUpBtn?.addEventListener('click', () => {
+    window.location.href = "/super-week/register";
+})
+
+signInBtn?.addEventListener('click', () => {
+    window.location.href = "/super-week/login";
+})
+
+disconnectBtn?.addEventListener('click', () => {
+    window.location.href = "/super-week/logout";
+})
+
+addBookBtn?.addEventListener('click', () => {
+    window.location.href = "/super-week/books/write";
 })
