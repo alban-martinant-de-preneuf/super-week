@@ -26,8 +26,8 @@
         <h2>DataBase</h2>
         <input type="button" value="Generate 10 users" id="generate_users">
         <input type="button" value="Generate 10 books" id="generate_books">
-        <input type="button" value="Delete users" id="delete_users">
-        <input type="button" value="Delete books" id="delete_books">
+        <input type="button" value="Reset users" id="delete_users">
+        <input type="button" value="Reset books" id="delete_books">
     </div>
     <hr>
     <div id="content"></div>
