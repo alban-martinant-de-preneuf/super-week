@@ -7,13 +7,15 @@ session_start();
 use App\Controller\UserController;
 use App\Controller\AuthController;
 use App\Controller\BookController;
+use App\Controller\HomeController;
 
 $router = new AltoRouter();
 
 $router->setBasePath('/super-week');
 
 $router->map('GET', '/', function () {
-    echo "Bienvenu sur l'accueil";
+    $homeController = new HomeController;
+    $homeController->displayHome();
 }, 'home');
 
 $router->map('GET', '/users', function () {
