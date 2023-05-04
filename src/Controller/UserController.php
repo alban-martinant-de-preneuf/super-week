@@ -16,4 +16,25 @@ class UserController {
         echo json_encode($model->getUserInfos($id));
     }
 
+    public function getIds() {
+        $model = new UserModel();
+        return $model->getIds();
+    }
+
+    public function createUsers($faker) {
+        $userModel = new UserModel();
+
+        for ($i = 0; $i < 10; $i++) {
+            $email = $faker->email();
+            $firstname = $faker->firstName();
+            $lastname = $faker->lastName();
+            $password = password_hash("pass", PASSWORD_DEFAULT);
+            $userModel->register($email, $firstname, $lastname, $password);
+        }
+    }
+
+    public function delUsers() {
+        $userModel = new UserModel();
+        $userModel->delUsers();
+    }
 }

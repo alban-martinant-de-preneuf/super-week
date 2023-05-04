@@ -2,3 +2,12 @@ form, #buttons_div {
     display: flex;
     flex-direction: column;
 }
+
+form {
+    margin-top: 15px;
+}
+
+#buttons_div {
+    width: 200px;
+    margin: auto;
+}

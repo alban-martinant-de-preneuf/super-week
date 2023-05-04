@@ -62,4 +62,23 @@ class UserModel
         return $fetchAssoc;
     }
 
+    public function getIds()
+    {
+        $sqlQuery =  ("SELECT `id`
+            FROM `user`"
+        );
+        $prepare = $this->_db->prepare($sqlQuery);
+        $prepare->execute();
+        $ids = $prepare->fetchAll(\PDO::FETCH_COLUMN);
+        return $ids;
+    }
+
+    public function delUsers()
+    {
+        $sqlQuery = "TRUNCATE `super_week`.`user`";
+        $prepare = $this->_db->prepare($sqlQuery);
+        $prepare->execute();
+    }
+
+
 }

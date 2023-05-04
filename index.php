@@ -18,6 +18,28 @@ $router->map('GET', '/', function () {
     $homeController->displayHome();
 }, 'home');
 
+$router->map('GET', '/faker/books', function () {
+    $faker = Faker\Factory::create('fr_FR');
+    $bookController = new BookController();
+    $bookController->createBooks($faker);
+}, 'faker_books');
+
+$router->map('GET', '/faker/users', function () {
+    $faker = Faker\Factory::create('fr_FR');
+    $userController = new UserController();
+    $userController->createUsers($faker);
+}, 'faker_users');
+
+$router->map('GET', '/users/delete', function () {
+    $userController = new UserController();
+    $userController->delUsers();
+}, 'delete_users');
+
+$router->map('GET', '/books/delete', function () {
+    $bookController = new BookController();
+    $bookController->delBooks();
+}, 'delete_books');
+
 $router->map('GET', '/users', function () {
     $userController = new UserController();
     $userController->findAll();
