@@ -1,4 +1,4 @@
-form {
+form, #buttons_div {
     display: flex;
     flex-direction: column;
 }
