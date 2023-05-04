@@ -5,6 +5,8 @@ const userInput = document.getElementById('user_input');
 const bookForm = document.getElementById('get_book_form');
 const bookInput = document.getElementById('book_input');
 const contentDiv = document.getElementById('content');
+const generateUsersBtn = document.getElementById('generate_users');
+const generateBooksBtn = document.getElementById('generate_books');
 
 usersBtn.addEventListener('click', async () => {
     const request = await fetch('/super-week/users');
@@ -12,10 +14,10 @@ usersBtn.addEventListener('click', async () => {
     contentDiv.innerHTML = "";
     for (user of users) {
         contentDiv.innerHTML += (
-            `<div class="user">
-                <h3>User : ${user.first_name} ${user.last_name} </h3>
-                Email : ${user.email}
-            </div>`
+            `<h3>User : ${user.first_name} ${user.last_name} </h3>
+            id : ${user.id} <br>
+            Email : ${user.email}
+            <hr>`
             );
     }
 })
@@ -26,9 +28,9 @@ booksBtn.addEventListener('click', async () => {
     contentDiv.innerHTML = "";
     for (book of books) {
         contentDiv.innerHTML += (
-            `<div class="book">
-                <h3>Titre : ${book.title}</h3>
-            </div>`
+            `<h3>Titre : ${book.title}</h3>
+            id : ${book.id}
+            <hr>`
             );
     }
 })
@@ -55,4 +57,12 @@ bookForm.addEventListener('submit', async (e) => {
         Id : ${book.id}
         <p>Content : ${book.content}</p>`
         );
+})
+
+generateUsersBtn.addEventListener('click', () => {
+    fetch('/super-week/faker/users');
+})
+
+generateBooksBtn.addEventListener('click', () => {
+    fetch('/super-week/faker/books');
 })
