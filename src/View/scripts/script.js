@@ -7,6 +7,8 @@ const bookInput = document.getElementById('book_input');
 const contentDiv = document.getElementById('content');
 const generateUsersBtn = document.getElementById('generate_users');
 const generateBooksBtn = document.getElementById('generate_books');
+const deleteUsersBtn = document.getElementById('delete_users');
+const deleteBooksBtn = document.getElementById('delete_books');
 
 usersBtn.addEventListener('click', async () => {
     const request = await fetch('/super-week/users');
@@ -65,4 +67,12 @@ generateUsersBtn.addEventListener('click', () => {
 
 generateBooksBtn.addEventListener('click', () => {
     fetch('/super-week/faker/books');
+})
+
+deleteUsersBtn.addEventListener('click', () => {
+    fetch('/super-week/users/delete');
+})
+
+deleteBooksBtn.addEventListener('click', () => {
+    fetch('/super-week/books/delete');
 })

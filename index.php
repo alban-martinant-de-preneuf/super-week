@@ -30,6 +30,16 @@ $router->map('GET', '/faker/users', function () {
     $userController->createUsers($faker);
 }, 'faker_users');
 
+$router->map('GET', '/users/delete', function () {
+    $userController = new UserController();
+    $userController->delUsers();
+}, 'delete_users');
+
+// $router->map('GET', '/books/delete', function () {
+//     $bookController = new BookController();
+//     $bookController->delBooks();
+// }, 'delete_books');
+
 $router->map('GET', '/users', function () {
     $userController = new UserController();
     $userController->findAll();

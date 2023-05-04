@@ -73,5 +73,12 @@ class UserModel
         return $ids;
     }
 
+    public function delUsers()
+    {
+        $sqlQuery = "TRUNCATE `super_week`.`user`";
+        $prepare = $this->_db->prepare($sqlQuery);
+        $prepare->execute();
+    }
+
 
 }

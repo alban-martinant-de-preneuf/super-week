@@ -33,4 +33,8 @@ class UserController {
         }
     }
 
+    public function delUsers() {
+        $userModel = new UserModel();
+        $userModel->delUsers();
+    }
 }

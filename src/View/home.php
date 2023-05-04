@@ -11,8 +11,8 @@
 </head>
 
 <body>
-    <h1>Informations</h1>
     <div id="buttons_div">
+        <h1>Informations</h1>
         <input type="button" value="Users" id="users">
         <input type="button" value="Books" id="books">
         <form action="" id="get_user_form">
@@ -23,10 +23,13 @@
             <input type="number" name="book" id="book_input">
             <input type="submit" value="get book">
         </form>
+        <h2>DataBase</h2>
+        <input type="button" value="Generate 10 users" id="generate_users">
+        <input type="button" value="Generate 10 books" id="generate_books">
+        <input type="button" value="Delete users" id="delete_users">
+        <input type="button" value="Delete books" id="delete_books">
     </div>
-    <h2>DataBase</h2>
-    <input type="button" value="Generate 10 users" id="generate_users">
-    <input type="button" value="Generate 10 books" id="generate_books">
+    <hr>
     <div id="content"></div>
 </body>
 
