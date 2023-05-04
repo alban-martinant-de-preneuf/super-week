@@ -1,13 +1,15 @@
-form, #buttons_div {
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.div_button {
     display: flex;
     flex-direction: column;
+    width: 25%;
 }
 
 form {
     margin-top: 15px;
-}
-
-#buttons_div {
-    width: 200px;
-    margin: auto;
 }
