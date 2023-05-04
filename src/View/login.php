@@ -10,7 +10,13 @@
 <body>
 
     <h1>Login</h1>
-    
+
+    <?php if (isset($_COOKIE['connection'])) : ?>
+        <?php if ($_COOKIE['connection'] === "failed") : ?>
+            <p><?=  "the connection failed !" ?></p>
+        <?php endif ?>
+    <?php endif ?>
+
     <form action="login" method="POST">
         <label for="email">Email</label>
         <input type="text" name="email" id="email">

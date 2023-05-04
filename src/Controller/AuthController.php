@@ -52,6 +52,7 @@ class AuthController
                 die();
             }
         }
+        setcookie("connection", "failed", time() + 2);
         header('Location: /super-week/login');
         die();
     }
