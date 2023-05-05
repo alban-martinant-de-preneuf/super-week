@@ -15,12 +15,17 @@ class AuthController
         $password = htmlspecialchars(trim($password));
         $passwordConf = htmlspecialchars(trim($passwordConf));
 
-        $model = new UserModel();
+        $userModel = new UserModel();
         if (
-            !$model->isUserMailExist($email) &&
+            !$userModel->isUserMailExist($email) &&
             $this->isPasswordsMatch($password, $passwordConf)
         ) {
-            $model->register($email, $firstname, $lastname, password_hash($password, PASSWORD_DEFAULT));
+            $userModel->insertOne([
+                "email" => $email,
+                "first_name" => $firstname,
+                "last_name" => $lastname,
+                "password" => password_hash($password, PASSWORD_DEFAULT)
+            ]);
             header('Location: /super-week/login');
         }
     }
@@ -44,7 +49,7 @@ class AuthController
     {
         $model = new UserModel();
         if ($id = $model->isUserMailExist($email)) {
-            $user = $model->getUserInfos($id);
+            $user = $model->getInfos($id);
             $hashedPassword = $user['password'];
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['user'] = $user;

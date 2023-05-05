@@ -21,33 +21,33 @@ $router->map('GET', '/', function () {
 $router->map('GET', '/faker/books', function () {
     $faker = Faker\Factory::create('fr_FR');
     $bookController = new BookController();
-    $bookController->createBooks($faker);
+    $bookController->createItems($faker);
 }, 'faker_books');
 
 $router->map('GET', '/faker/users', function () {
     $faker = Faker\Factory::create('fr_FR');
     $userController = new UserController();
-    $userController->createUsers($faker);
+    $userController->createItems($faker);
 }, 'faker_users');
 
 $router->map('GET', '/users/delete', function () {
     $userController = new UserController();
-    $userController->delUsers();
+    $userController->delAll();
 }, 'delete_users');
 
 $router->map('GET', '/books/delete', function () {
     $bookController = new BookController();
-    $bookController->delBooks();
+    $bookController->delAll();
 }, 'delete_books');
 
 $router->map('GET', '/users', function () {
     $userController = new UserController();
-    $userController->findAll();
+    $userController->getAll();
 }, 'users_list');
 
 $router->map('GET', '/users/[i:id]', function ($id) {
     $userController = new UserController();
-    $userController->getUserInfos($id);
+    $userController->getInfos($id);
 }, 'user_id');
 
 $router->map('GET', '/register', function () {
@@ -85,28 +85,28 @@ $router->map('POST', '/login', function () {
 
 $router->map('GET', '/books/write', function () {
     $bookController = new BookController();
-    $bookController->displayAddBook();
+    $bookController->displayRegisterForm();
 }, 'book_write');
 
 $router->map('POST', '/books/write', function () {
     if (isset($_POST['submit']) && isset($_SESSION['user'])) {
         $bookController = new BookController();
-        $bookController->addBook(
-            $_POST['title'],
-            $_POST['content'],
-            $_SESSION['user']['id']
-        );
+        $bookController->register([
+            "title" => $_POST['title'],
+            "content" => $_POST['content'],
+            "id_user" => $_SESSION['user']['id']
+        ]);
     }
 }, 'book_post');
 
 $router->map('GET', '/books', function () {
     $bookController = new BookController();
-    $bookController->getBooks();
+    $bookController->getAll();
 }, 'get_books');
 
 $router->map('GET', '/books/[i:id]', function ($id) {
     $bookController = new BookController();
-    $bookController->getBookInfos($id);
+    $bookController->getInfos($id);
 }, 'get_book_infos');
 
 $router->map('GET', '/logout', function () {
