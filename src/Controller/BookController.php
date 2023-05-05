@@ -4,39 +4,36 @@ namespace App\Controller;
 
 use App\Model\BookModel;
 use App\Model\UserModel;
+use Faker;
 
-class BookController
+class BookController implements InterfaceController
 {
 
-    public function displayAddBook()
+    public function displayRegisterForm() : void
     {
         require_once('src/View/addbook.php');
     }
 
-    public function addBook($title, $content, $userId)
+    public function register(array $column) : void
     {
         $bookModel = new BookModel();
-        $bookModel->insertBook(
-            htmlspecialchars($title),
-            htmlspecialchars($content),
-            htmlspecialchars($userId)
-        );
+        $bookModel->insertOne($column);
         header('Location: /super-week');
     }
 
-    public function getBooks()
+    public function getAll() : void
     {
         $bookModel = new BookModel();
-        echo json_encode($bookModel->getBooks());
+        echo json_encode($bookModel->getAll());
     }
 
-    public function getBookInfos($id)
+    public function getInfos(int $id) : void
     {
         $bookModel = new BookModel();
-        echo json_encode($bookModel->getBookInfos($id));
+        echo json_encode($bookModel->getInfos($id));
     }
 
-    public function createBooks($faker)
+    public function createItems(Faker\Generator $faker) : void
     {
         $bookModel = new BookModel();
         $userModel = new UserModel();
@@ -44,10 +41,14 @@ class BookController
         
         if (!empty($userIds)) {
             for ($i = 0; $i < 10; $i++) {
-                $titre = $faker->text(20);
+                $title = $faker->text(20);
                 $content = $faker->sentence(200);
                 $userId = array_rand($userIds);
-                $bookModel->insertBook($titre, $content, $userId);
+                $bookModel->insertOne([
+                    "title" => $title,
+                    "content" => $content,
+                    "id_user" => $userId
+                ]);
             }
             echo "Books have been created";
         } else {
@@ -55,10 +56,10 @@ class BookController
         }
     }
 
-    public function delBooks()
+    public function delAll() : void
     {
         $bookModel = new BookModel();
-        $bookModel->delBooks();
+        $bookModel->delAll();
         echo "Books have been deleted";
     }
 }

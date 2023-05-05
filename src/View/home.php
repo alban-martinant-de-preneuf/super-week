@@ -15,11 +15,11 @@
         <div class="div_button">
             <h2>Welcome <?= isset($_SESSION['user']) ? $_SESSION['user']['first_name'] : null ?></h2>
             <?php if (!isset($_SESSION['user'])) : ?>
-                <button id="sign_in">Sign in</button>
-                <button id="sign_up">Sign up</button>
+                <button id="sign_in" class="user_btn">Sign in</button>
+                <button id="sign_up" class="user_btn">Sign up</button>
             <?php else : ?>
-                <button id="disconnect">Disconnect</button>
-                <button id="add_book">Add book</button>
+                <button id="disconnect" class="user_btn">Disconnect</button>
+                <button id="add_book" class="user_btn">Add book</button>
             <?php endif ?>
         </div>
 
@@ -39,10 +39,10 @@
 
         <div class="div_button">
             <h2>DataBase</h2>
-            <input type="button" value="Generate 10 users" id="generate_users">
-            <input type="button" value="Generate 10 books" id="generate_books">
-            <input type="button" value="Reset users" id="delete_users">
-            <input type="button" value="Reset books" id="delete_books">
+            <input type="button" value="Generate 10 users" id="generate_users" class="bd_handle">
+            <input type="button" value="Generate 10 books" id="generate_books" class="bd_handle">
+            <input type="button" value="Reset users" id="delete_users" class="bd_handle">
+            <input type="button" value="Reset books" id="delete_books" class="bd_handle">
         </div>
     </header>
 

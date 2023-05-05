@@ -10,7 +10,7 @@ class DbConnection {
     private static $database = 'super_week';
     private static ?\PDO $_db = null;
 
-    public static function getDb()
+    public static function getDb(): ?\PDO
     {
         if (!self::$_db) {
             try {

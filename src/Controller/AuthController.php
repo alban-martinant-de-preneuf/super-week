@@ -7,7 +7,13 @@ use App\Model\UserModel;
 class AuthController
 {
 
-    public function register($email, $firstname, $lastname, $password, $passwordConf)
+    public function register(
+        string $email,
+        string $firstname,
+        string $lastname,
+        string $password,
+        string $passwordConf
+        ) : void
     {
         $email = htmlspecialchars(trim($email));
         $firstname = htmlspecialchars(trim($firstname));
@@ -15,36 +21,41 @@ class AuthController
         $password = htmlspecialchars(trim($password));
         $passwordConf = htmlspecialchars(trim($passwordConf));
 
-        $model = new UserModel();
+        $userModel = new UserModel();
         if (
-            !$model->isUserMailExist($email) &&
+            !$userModel->isUserMailExist($email) &&
             $this->isPasswordsMatch($password, $passwordConf)
         ) {
-            $model->register($email, $firstname, $lastname, password_hash($password, PASSWORD_DEFAULT));
+            $userModel->insertOne([
+                "email" => $email,
+                "first_name" => $firstname,
+                "last_name" => $lastname,
+                "password" => password_hash($password, PASSWORD_DEFAULT)
+            ]);
             header('Location: /super-week/login');
         }
     }
 
-    public function displayRegister()
+    public function displayRegister() : void
     {
         require_once("src/View/register.php");
     }
 
-    private function isPasswordsMatch($password, $passwordConf)
+    private function isPasswordsMatch(string $password, string $passwordConf) : bool
     {
         return $password === $passwordConf;
     }
 
-    public function displayLogin()
+    public function displayLogin() : void
     {
         require_once("src/View/login.php");
     }
 
-    public function login($email, $password)
+    public function login(string $email, string $password) : void
     {
         $model = new UserModel();
         if ($id = $model->isUserMailExist($email)) {
-            $user = $model->getUserInfos($id);
+            $user = $model->getInfos($id);
             $hashedPassword = $user['password'];
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['user'] = $user;
