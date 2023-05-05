@@ -25,9 +25,9 @@ We've created a database with two tables: user and book, and added some dummy da
 
 We've created a src/ folder at the root of our project. Inside this folder, we've created three subfolders: Model/, Controller/, and View/.
 
-    Model/: This folder contains all the classes that make database queries. All the classes in this folder have the namespace App\Model.
-    Controller/: This folder contains all the classes that manipulate data sent to or received from the Model. All the classes in this folder have the namespace App\Controller.
-    View/: This folder contains all the template files used to display information to the user. There are no classes in this folder.
+Model/: This folder contains all the classes that make database queries. Allthe classes in this folder have the namespace App\Model.
+Controller/: This folder contains all the classes that manipulate data sent toor received from the Model. All the classes in this folder have the namespaceApp\Controller.
+View/: This folder contains all the template files used to display informationto the user. There are no classes in this folder.
 
 We've updated the composer.json file to add the App namespace to our autoloader.
 User Controller
