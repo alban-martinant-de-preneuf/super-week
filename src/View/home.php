@@ -15,11 +15,11 @@
         <div class="div_button">
             <h2>Welcome <?= isset($_SESSION['user']) ? $_SESSION['user']['first_name'] : null ?></h2>
             <?php if (!isset($_SESSION['user'])) : ?>
-                <button id="sign_in">Sign in</button>
-                <button id="sign_up">Sign up</button>
+                <button id="sign_in" class="user_btn">Sign in</button>
+                <button id="sign_up" class="user_btn">Sign up</button>
             <?php else : ?>
-                <button id="disconnect">Disconnect</button>
-                <button id="add_book">Add book</button>
+                <button id="disconnect" class="user_btn">Disconnect</button>
+                <button id="add_book" class="user_btn">Add book</button>
             <?php endif ?>
         </div>
 

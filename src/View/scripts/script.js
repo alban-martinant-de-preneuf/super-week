@@ -10,10 +10,7 @@ const generateBooksBtn = document.getElementById('generate_books');
 const deleteUsersBtn = document.getElementById('delete_users');
 const deleteBooksBtn = document.getElementById('delete_books');
 
-const signInBtn = document.getElementById('sign_in');
-const signUpBtn = document.getElementById('sign_up');
-const disconnectBtn = document.getElementById('disconnect');
-const addBookBtn = document.getElementById('add_book');
+const userBtns = document.querySelectorAll('.user_btn');
 
 usersBtn.addEventListener('click', async () => {
     const request = await fetch('/super-week/users');
@@ -116,18 +113,15 @@ deleteBooksBtn.addEventListener('click', async () => {
     contentDiv.innerHTML = `<p>${text}</p>`;
 })
 
-signUpBtn?.addEventListener('click', () => {
-    window.location.href = "/super-week/register";
-})
+const links = {
+    "sign_in": "/super-week/login",
+    "sign_up": "/super-week/register",
+    "disconnect": "/super-week/logout",
+    "add_book": "/super-week/books/write"
+}
 
-signInBtn?.addEventListener('click', () => {
-    window.location.href = "/super-week/login";
-})
-
-disconnectBtn?.addEventListener('click', () => {
-    window.location.href = "/super-week/logout";
-})
-
-addBookBtn?.addEventListener('click', () => {
-    window.location.href = "/super-week/books/write";
+userBtns.forEach(button => {
+    button.addEventListener('click',(e) => {
+        window.location.href = links[e.target.id];
+    })
 })
