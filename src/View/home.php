@@ -21,6 +21,7 @@
                 <button id="disconnect" class="user_btn">Disconnect</button>
                 <button id="add_book" class="user_btn">Add book</button>
             <?php endif ?>
+            <a href="https://github.com/alban-martinant-de-preneuf/super-week">github</a>
         </div>
 
         <div class="div_button">
