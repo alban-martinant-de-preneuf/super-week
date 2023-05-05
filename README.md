@@ -2,6 +2,13 @@
 
 Welcome to our exciting project! This is a demonstration of our development skills, showcasing our knowledge of various concepts.
 
+## Installation
+
+To use this project, you must clone this git repository to your local machine. You must also install the dependencies using Composer by running the following command in the terminal:
+
+`composer install`
+
+
 ## Project Setup
 
 As developers, we know the importance of version control. So, we've initialized a new git project to keep track of our modifications.
