@@ -4,7 +4,8 @@ namespace App\Controller;
 
 class HomeController
 {
-    public function displayHome(){
+    public function displayHome(): void
+    {
         require_once('src/View/home.php');
     }
 }

@@ -12,7 +12,7 @@ abstract class AbstractModel
         $this->_db = DbConnection::getDb();
     }
 
-    public function getAll()
+    public function getAll(): ?array
     {
         $sqlQuery = ("SELECT *
             FROM $this->_table"
@@ -23,14 +23,14 @@ abstract class AbstractModel
         return $fetchAllAssoc;
     }
 
-    public function delAll()
+    public function delAll(): void
     {
         $sqlQuery = "TRUNCATE `super_week`.`$this->_table`";
         $prepare = $this->_db->prepare($sqlQuery);
         $prepare->execute();
     }
 
-    public function getInfos($id)
+    public function getInfos($id): ?array
     {
         $sqlQuery = ("SELECT *
             FROM $this->_table
@@ -42,7 +42,7 @@ abstract class AbstractModel
         return $fetchAssoc;
     }
 
-    public function insertOne(array $columns)
+    public function insertOne(array $columns): void
     {
         $columnNames = "(";
         $columnValues = "(";
