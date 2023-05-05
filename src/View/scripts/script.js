@@ -5,10 +5,8 @@ const userInput = document.getElementById('user_input');
 const bookForm = document.getElementById('get_book_form');
 const bookInput = document.getElementById('book_input');
 const contentDiv = document.getElementById('content');
-const generateUsersBtn = document.getElementById('generate_users');
-const generateBooksBtn = document.getElementById('generate_books');
-const deleteUsersBtn = document.getElementById('delete_users');
-const deleteBooksBtn = document.getElementById('delete_books');
+
+const bdHandle = document.querySelectorAll('.bd_handle');
 
 const userBtns = document.querySelectorAll('.user_btn');
 
@@ -89,39 +87,30 @@ bookForm.addEventListener('submit', async (e) => {
     }
 })
 
-generateUsersBtn.addEventListener('click', async () => {
-    const request = await fetch('/super-week/faker/users');
-    const text = await request.text();
-    contentDiv.innerHTML = `<p>${text}</p>`;
-})
-
-generateBooksBtn.addEventListener('click', async () => {
-    const request = await fetch('/super-week/faker/books');
-    const text = await request.text();
-    contentDiv.innerHTML = `<p>${text}</p>`;
-})
-
-deleteUsersBtn.addEventListener('click', async () => {
-    const request = await fetch('/super-week/users/delete');
-    const text = await request.text();
-    contentDiv.innerHTML = `<p>${text}</p>`;
-})
-
-deleteBooksBtn.addEventListener('click', async () => {
-    const request = await fetch('/super-week/books/delete');
-    const text = await request.text();
-    contentDiv.innerHTML = `<p>${text}</p>`;
-})
-
 const links = {
     "sign_in": "/super-week/login",
     "sign_up": "/super-week/register",
     "disconnect": "/super-week/logout",
-    "add_book": "/super-week/books/write"
+    "add_book": "/super-week/books/write",
+    "generate_users": "/super-week/faker/users",
+    "generate_books": "/super-week/faker/books",
+    "delete_users": "/super-week/users/delete",
+    "delete_books": "/super-week/books/delete"
 }
 
+console.log(bdHandle)
+
+bdHandle.forEach(button => {
+    button.addEventListener('click', async (e) => {
+        console.log("ok")
+        const request = await fetch(links[e.target.id]);
+        const text = await request.text();
+        contentDiv.innerHTML = `<p>${text}</p>`;
+    })
+})
+
 userBtns.forEach(button => {
-    button.addEventListener('click',(e) => {
+    button.addEventListener('click', (e) => {
         window.location.href = links[e.target.id];
     })
 })

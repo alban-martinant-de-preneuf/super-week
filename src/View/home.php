@@ -39,10 +39,10 @@
 
         <div class="div_button">
             <h2>DataBase</h2>
-            <input type="button" value="Generate 10 users" id="generate_users">
-            <input type="button" value="Generate 10 books" id="generate_books">
-            <input type="button" value="Reset users" id="delete_users">
-            <input type="button" value="Reset books" id="delete_books">
+            <input type="button" value="Generate 10 users" id="generate_users" class="bd_handle">
+            <input type="button" value="Generate 10 books" id="generate_books" class="bd_handle">
+            <input type="button" value="Reset users" id="delete_users" class="bd_handle">
+            <input type="button" value="Reset books" id="delete_books" class="bd_handle">
         </div>
     </header>
 
