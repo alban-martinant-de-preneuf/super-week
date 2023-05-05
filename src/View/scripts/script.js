@@ -98,11 +98,8 @@ const links = {
     "delete_books": "/super-week/books/delete"
 }
 
-console.log(bdHandle)
-
 bdHandle.forEach(button => {
     button.addEventListener('click', async (e) => {
-        console.log("ok")
         const request = await fetch(links[e.target.id]);
         const text = await request.text();
         contentDiv.innerHTML = `<p>${text}</p>`;
